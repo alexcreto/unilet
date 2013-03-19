@@ -45,7 +45,6 @@ gem 'will_paginate', '~> 3.0.4'
 
 #gem 'memcache-client', '~> 1.8.5'
 group :production do
-  gem 'mysql2', '~> 0.3.10'
   gem 'pg'
 end
 
@@ -67,6 +66,7 @@ group :test, :development do
   gem 'capybara', "~> 1.1"#, :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'mysql2', '~> 0.3.10'
 end
 
 group :test do
@@ -85,9 +85,6 @@ group :test do
   gem "autotest", '~> 4.4.6'
   gem "autotest-rails-pure"
 
-  if RUBY_PLATFORM =~ /darwin/
-    #gem "autotest-fsevent", '~> 0.2.5'
-  end
   gem "autotest-growl"
   #gem "redgreen"
   gem "ZenTest", '4.6.2'
