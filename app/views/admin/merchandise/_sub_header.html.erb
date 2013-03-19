@@ -1,0 +1,31 @@
+<% if @product && @product.id %>
+  <% content_for :sidemenu do -%>
+
+    <ul>
+      <!-- <li> <%#= link_to 'Brand',         edit_admin_merchandise_brand_path(@product.brand) %> </li> -->
+        <li>
+          <%= link_to 'Descrição',
+                      edit_admin_merchandise_products_description_path(@product),
+                      :style => "#{@product.description.blank? ? 'color:#EF2255;' : ''}" %>
+        </li>
+        <li>
+          <%= link_to 'Imagens',
+                      edit_admin_merchandise_images_product_path(@product),
+                      :style => "#{@product.images.size == 0 ? 'color:#EF2255;' : ''}" %>
+        </li>
+        <li> <%= link_to 'Produtos',     admin_merchandise_product_path(@product) %> </li>
+        <li> <%= link_to 'Propriedades',
+                          edit_admin_merchandise_changes_product_property_path(@product.id),
+                          :style => "#{@product.properties.size == 0 ? 'color:#EF2255;' : ''}" %> </li>
+        <li>
+          <%= link_to 'Opções',
+                      edit_admin_merchandise_multi_product_variant_path(@product),
+                      :style => "#{@product.variants.size == 0 ? 'color:#EF2255;' : ''}" %> </li>
+        <li>
+          <%= link_to "Estoque",
+                      admin_inventory_adjustment_path(@product) %>
+        </li>
+    </ul>
+
+  <% end %>
+<% end %>

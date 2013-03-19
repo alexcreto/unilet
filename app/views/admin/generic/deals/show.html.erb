@@ -1,0 +1,34 @@
+<h3>Oferta</h3>
+
+<ul>
+  <li>
+    <label>Número de itens:</label>
+    <%= @deal.buy_quantity %>
+  </li>
+  <li>
+    <label>Porcentagem:</label>
+    <%= @deal.get_percentage %>
+  </li>
+  <li>
+    <label>Tipo de acordo:</label>
+    <%= @deal.deal_type.name %>
+  </li>
+  <li>
+    <label>Tipo de produto:</label>
+    <%= @deal.product_type.name %>
+  </li>
+  <li>
+    <label>Valor:</label>
+    <%= @deal.get_amount %>
+  </li>
+  <li>
+    <label>Acaba em:</label>
+    <%= @deal.deleted_at %>
+  </li>
+</ul>
+<p>
+  <%#  YOU SHOULD NOT EDIT THIS..  OLD ORDERS WILL NO LONGER CALCULATE CORRECTLY.  set Deleted_at and create a new promotion %>
+  <%#= link_to 'Editar', edit_admin_generic_deal_path(@deal), :class => 'button' %> |
+  <%= link_to "Deletar", [:admin, :generic, @deal], :data => {:confirm => 'Você tem certeza?'}, :method => :delete, :class => 'button' %> |
+  <%= link_to "Mostrar todos", admin_generic_deals_path, :class => 'button' %>
+</p>

@@ -1,0 +1,19 @@
+<h1> Recibo para o pedido: (<%= @invoice.order.number %>) </h1>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @invoice.amount %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @invoice.state %>
+</p>
+
+<p>
+  <%= link_to "Ver em PDF", admin_document_invoice_path(@invoice, :format => 'pdf'), :class => 'button' %>
+</p>
+
+<p>
+  <%= link_to "Ver todos", admin_document_invoices_path, :class => 'button' %>
+</p>

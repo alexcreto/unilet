@@ -1,0 +1,43 @@
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@address.errors.count, "erro não permitiu", "erros não permitiram") %> que este endereço fosse salvo:</h2>
+
+      <ul>
+      <% @address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Nome' %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label 'Sobrenome' %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label 'Endereço 1' %><br />
+    <%= f.text_field :address1 %>
+  </div>
+  <div class="field">
+    <%= f.label 'Endereço 2' %><br />
+    <%= f.text_field :address2 %>
+  </div>
+  <div class="field">
+    <%= f.label 'Cidade' %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label 'Estado' %><br />
+    <%= f.select :state_id, states %>
+  </div>
+  <div class="field">
+    <%= f.label 'CEP' %><br />
+    <%= f.text_field :zip_code %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>

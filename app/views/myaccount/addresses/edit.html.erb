@@ -1,0 +1,11 @@
+<div class='nine columns'>
+  <h3> Editar endereço </h3>
+
+  <%= form_for(@form_address, :url => myaccount_address_path(@form_address)) do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  <% end %>
+  <div class=''>
+    <%= link_to 'Mostrar', myaccount_address_path( @form_address ), :class => 'secondary small ' %>
+    <%= link_to 'Voltar', myaccount_addresses_path, :class => 'secondary small button  ' %>
+  </div>
+</div>

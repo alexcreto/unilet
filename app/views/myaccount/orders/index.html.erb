@@ -1,0 +1,19 @@
+<div class='nine columns'>
+  <h3>Pedidos</h3>
+
+  <% unless @orders.length > 0 %>
+    Você não possui nenhum pedido feito.
+  <% end %>
+
+  <% @orders.each do |order| %>
+    <div class='order-list-item ten'>
+      <ul>
+        <li><label>Número:</label>        <%= link_to order.number, myaccount_order_path(order) %></li>
+        <li><label>Valor:</label>        <%= number_to_currency( order.first_invoice_amount ) %></li>
+        <li><label>Status:</label>        <%= order.status %></li>
+        <li><label>Feito em:</label>  <%= order.display_completed_at %></li>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+</div>

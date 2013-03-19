@@ -1,0 +1,27 @@
+<div class="admin_title_header">
+  <h3>Contas</h3>
+  <%= link_to 'Criar nova conta', new_admin_config_account_path, :class => 'button' %>
+</div>
+
+<div class="admin_accounts">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'>Account type</th>
+      <th>Mensalidade</th>
+      <th>Ativo</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+  <% @accounts.each do |account| %>
+    <tr class='<%= cycle("odd", "")%>'>
+      <td><%= link_to account.account_type, edit_admin_config_account_path(account) %></td>
+      <td><%= account.monthly_charge %></td>
+      <td><%= account.active %></td>
+      <td><%= link_to "Deletar", admin_config_account_path(account), :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>

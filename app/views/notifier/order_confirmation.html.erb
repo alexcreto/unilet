@@ -1,0 +1,24 @@
+<% @order.find_total %>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Olá <%= @user.name %>,</h1>
+    <p>
+      Muito obrigado por ter comprado na <%= @site_name %>. Segue os dados de confirmação.
+    </p>
+
+    <h4>Número do pedido: <%= @order.number %></h4>
+    <ul>
+      <% @order.order_items.group_by(&:variant).each do |variant, order_items| %>
+        <li><%= order_items.size %> <%= variant.product_name %>: <%= order_items.size %></li>
+      <% end %>
+        <li>Valor Total (<%= number_to_currency @invoice.amount %>)</li>
+    </ul>
+
+    <p>Muito obrigado e tenha um belo dia!</p>
+  </body>
+</html>

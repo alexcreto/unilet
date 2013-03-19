@@ -1,0 +1,7 @@
+<h1>Novo endereço de cobrança</h1>
+
+<%= form_for( @billing_address, :url => admin_shopping_checkout_billing_addresses_path(@billing_address)) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<%= link_to 'Voltar', admin_shopping_checkout_billing_addresses_path %>

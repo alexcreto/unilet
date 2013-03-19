@@ -1,0 +1,48 @@
+<% if @coupon.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@coupon.errors.count, "erro não permitiu", "erros não permitiram") %> que este cupom fosse salvo:</h2>
+
+    <ul>
+    <% @coupon.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<fieldset>
+  <label>Código</label>
+  <%= f.text_field :code %>
+
+  <% unless @coupon.id %>
+    <label>Tipo</label>
+    <%= select_tag :c_type, @coupon_types.map{|ct| "<option>#{ct}</option>"}.join().html_safe , { :include_blank => true } %>
+  <% end %>
+
+  <label>Valor</label>
+  <%= f.text_field :amount %>
+
+  <label>Valor mínimo</label>
+  <%= f.text_field :minimum_value %>
+
+  <label>Porcentagem</label>
+  <%= f.text_field :percent %>
+
+  <label>Descrição</label>
+  <%= f.text_area :description %>
+
+  <label>Juntar</label>
+  <%= f.check_box :combine %>
+
+  <label>A partir de</label>
+  <div class='date-select'>
+    <%= f.date_select :starts_at %>
+  </div>
+
+  <label>Válido até</label>
+  <div class='date-select'>
+    <%= f.date_select :expires_at %>
+  </div>
+</fieldset>
+
+<%= f.submit "Criar", :class => "button" %>

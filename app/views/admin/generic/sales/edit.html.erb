@@ -1,0 +1,11 @@
+<h1> Editar promoção </h1>
+
+<%= form_for @sale, :url => [:admin, :generic, @sale] do |f| %>
+  <%=  render :partial => 'form', :locals => {:f => f} %>
+  <div class="actions"><%= f.submit 'Atualizar' , :class => 'button' %></div>
+<% end %>
+
+<p>
+  <%= link_to "Mostrar", [:admin, :generic, @sale], :class => 'button' %> |
+  <%= link_to "Mostrar todos", admin_generic_sales_path, :class => 'button' %>
+</p>

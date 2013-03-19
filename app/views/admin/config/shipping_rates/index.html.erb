@@ -1,0 +1,31 @@
+<div class="admin_title_header">
+  <h3>Taxas de envio</h3>
+  <%= link_to 'Criar nova taxa de envio', new_admin_config_shipping_rate_path, :class => 'button' %>
+</div>
+
+<div class="admin_shipping_rates">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'>Método de envio</th>
+      <th>Taxa</th>
+      <th>Tipo de taxa de envio</th>
+      <th>Taxa mínima</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+  <% @shipping_rates.each do |shipping_rate| %>
+    <tr class='<%= cycle("odd", "")%>'>
+      <td><%= shipping_rate.shipping_method.name %></td>
+      <td><%= shipping_rate.rate %></td>
+      <td><%= shipping_rate.shipping_rate_type.name %></td>
+      <td><%= shipping_rate.minimum_charge %></td>
+
+      <td><%= link_to 'Mostar', admin_config_shipping_rate_path(shipping_rate) %></td>
+      <td><%= link_to 'Editar', edit_admin_config_shipping_rate_path(shipping_rate) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>

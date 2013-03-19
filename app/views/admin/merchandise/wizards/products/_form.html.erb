@@ -1,0 +1,53 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'admin/merchandise_product' %>
+<% end %>
+
+<% content_for :below_body do -%>
+  <script>
+    Hadean.AdminMerchandiseProductForm.initialize(<%= @product.id %>);
+  </script>
+<% end %>
+
+<%= error_messages_for 'product' %>
+
+<label>Nome</label>
+<%= form.text_field :name %>
+
+<label>Permalink</label>
+<%= form.text_field :permalink %>
+
+<label>Palavras-chave de busca</label>
+<%= form.text_field :set_keywords, :placeholder => "separadas por vírgula" %>
+
+<label>Meta palavras-chave</label>
+<%= form.text_field :meta_keywords %>
+
+<label>Meta descrição</label>
+<%= form.text_field :meta_description %>
+
+<label>Tipo de produto</label>
+<%= form.select :product_type_id, @select_product_types %>
+
+<label>Categoria de envio</label>
+<%= form.select :shipping_category_id, @select_shipping_category %>
+
+<label>Marca</label>
+<%= form.select :brand_id, @brands %>
+
+<fieldset>
+  <legend>Propriedades</legend>
+
+  <div id="product_properties" class='span-11 '>
+    <% @all_properties.each do |property| %>
+      <div id='property_<%= property.id %>'
+            class="property_form left span-12 last"
+            <%= "style='display:none;'" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
+        <%= form.fields_for :product_properties, property.product_properties.find_or_initialize_by_product_id(@product.id) do |product_property_form|%>
+          <label><%= property.full_name %></label>
+          <%= product_property_form.hidden_field :property_id %>
+          <label>Descrição:</label> <%= product_property_form.text_field :description %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</fieldset>

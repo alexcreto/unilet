@@ -1,0 +1,8 @@
+<h1> Nova Promoção </h1>
+
+<%= form_for @sale, :url => admin_generic_sales_path(@sale) do |f| %>
+  <%=  render :partial => 'form', :locals => {:f => f} %>
+  <div class="actions"><%= f.submit 'Criar' , :class => 'button' %></div>
+<% end %>
+
+<p><%= link_to "Voltar", admin_generic_sales_path, :class => 'button' %></p>

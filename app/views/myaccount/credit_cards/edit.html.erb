@@ -1,0 +1,10 @@
+<div class='nine columns'>
+  <h3> Editar cartão de crédito </h3>
+
+  <%= form_for(@credit_card, :url => myaccount_credit_card_path(@credit_card)) do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  <% end %>
+
+  <%= link_to 'Mostrar', myaccount_credit_card_path( @credit_card ), :class => 'button' %> |
+  <%= link_to 'Mostrar todos', myaccount_credit_cards_path, :class => 'button' %>
+</div>

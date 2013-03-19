@@ -1,0 +1,12 @@
+<%= render :partial => '/admin/merchandise/sub_header'%>
+
+<h3>Nova marca</h3>
+
+<%= form_for(@brand, :url => admin_merchandise_brands_path(@brand)) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.submit 'Criar', :class => 'button' %>
+<% end %>
+
+<p>
+  <%= link_to 'Voltar', admin_merchandise_brands_path, :class => 'button' %>
+</p>

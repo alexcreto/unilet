@@ -1,0 +1,23 @@
+<div class='nine columns'>
+  <h3> Cartões de crédito </h3>
+  <% if @credit_cards.empty? %>
+    <p>
+      Você não possui um cartão de crédito cadastrado.
+    </p>
+  <% else %>
+    <table>
+      <tr>
+        <th>Nome</th>
+      </tr>
+      <% for credit_card in @credit_cards %>
+        <tr>
+          <td><%= credit_card.name %></td>
+          <td><%= link_to "Mostrar", myaccount_credit_card_path(credit_card) %></td>
+          <td><%= link_to 'Editar', edit_myaccount_credit_card_path(credit_card) %></td>
+          <td><%= link_to "Remover", myaccount_credit_card_path(credit_card), :confirm => 'Você tem certeza?', :method => :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <p><%= link_to "Criar um novo cartão de crédito", new_myaccount_credit_card_path, :class => 'button' %></p>
+</div>

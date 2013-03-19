@@ -1,0 +1,19 @@
+<% if @product_type.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product_type.errors.count, "erro não permitiu", "erros não permitiram") %> que este tipo de produto fosse salvo:</h2>
+
+    <ul>
+    <% @product_type.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<label>Nome</label>
+<%= form.text_field :name %>
+
+<label>Pai</label>
+<%= form.select :parent_id, nested_set_options(ProductType, ProductType.new) {|i, level| "#{'-' * level} #{i.name}" }, { :include_blank => true } %>
+
+<%= form.submit 'Criar', :class => 'button', :style => "margin-top: 10px" %>

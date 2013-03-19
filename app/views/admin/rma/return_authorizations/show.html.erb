@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<div class='span-9'>
+  <h3>Detalhes da autorização de retorno de mercadorias</h3>
+
+    <b>Número:<%= @return_authorization.number %></b><br/>
+    Valor: <%= @return_authorization.amount %> <br/>
+    Taxa de devolução: <%= @return_authorization.restocking_fee %> <br/>
+    Status: <%= @return_authorization.state %><br/>
+
+
+    <div  id='order-items'
+          class='span-8 rounded-10 line_item_blue float-left'>
+      <% @return_authorization.return_items.each do |item| %>
+        <%= item.order_item.variant.product_name %> <br/>
+      <% end %>
+    </div>
+</div>
+
+<div class='span-9'>
+  <h3>Detalhes do pedido</h3>
+
+
+  <div class=' span-8 float-left'>
+  <b>Itens</b>
+    <div  id='order-items'
+          class='span-8 rounded-10 line_item_blue float-left'>
+
+            <% @order.order_items.each do |item| %>
+              <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
+            <% end %>
+    </div>
+  </div>
+</div>
+
+<div class='span-5'>
+  <% if @return_authorization.authorized? %>
+    <%= link_to 'Recusar RMA',
+                edit_admin_rma_order_return_authorization_path(@order, @return_authorization),
+                :class => 'button heart', :method => :delete, :data => {:confirm => "Você tem certeza de que quer RECUSAR?"} %>
+    <%= button_to 'Aceitar RMA',
+                complete_admin_rma_order_return_authorization_path(@order, @return_authorization),
+                :class => 'button green', :data => {:confirm => "Você tem certeza de que quer ACEITAR?"}, :method => :put %>
+  <% end %>
+</div>
+
+<div class='span-24'>
+  <% if @return_authorization.authorized? %>
+    <%= link_to 'Editar RMA',
+                edit_admin_rma_order_return_authorization_path(@order, @return_authorization),
+                :class => 'button heart'%>
+  <% end %>
+  <%= link_to 'Informações do pedido',
+              admin_history_order_path(@order),
+              :class => 'button spade' %>
+  <%= link_to 'Todas RMAs deste pedido',
+              admin_rma_order_return_authorizations_path(@order),
+              :class => 'button heart' %>
+</div>

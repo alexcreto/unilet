@@ -1,0 +1,42 @@
+<% if @tax_rate.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@tax_rate.errors.count, "erro não permitiu", "erros não permitiram") %> que essa taxa fosse salva:</h2>
+
+    <ul>
+    <% @tax_rate.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<fieldset>
+  <label>Porcentagem</label>
+  <%= f.text_field :percentage %>
+
+  <label>País</label>
+
+  <% if Settings.tax_per_state_id %>
+    <%= select_tag :select_country, options_from_collection_for_select(countries, "second", "first"), {:include_blank => true} %>
+    <label>Estado</label>
+    <%= f.select :state_id, @states, {:include_blank => true} %>
+  <% else %>
+    <label>País</label>
+    <%= f.select :country_id, countries, {:include_blank => true} %>
+  <% end %>
+
+  <label>Data de início</label>
+  <div class='date-select'>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <label>Data de fim</label>
+  <div class='date-select'>
+    <%= f.date_select :end_date %>
+  </div>
+
+  <label>Ativo</label>
+  <%= f.check_box :active %>
+</fieldset>
+
+<%= f.submit "Criar", :class => "button" %>

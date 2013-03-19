@@ -1,0 +1,50 @@
+<fieldset>
+  <legend>Novo usuário</legend>
+
+  <div class="row">
+    <div class="six columns">
+      <label>Nome</label>
+      <%= form.text_field :first_name %>
+
+      <label>Email</label>
+      <%= form.text_field :email %>
+
+      <label>Status</label>
+      <%= form.select :state, @states %>
+    </div>
+
+    <div class="six columns">
+      <label>Sobrenome</label>
+      <%= form.text_field :last_name %>
+
+      <label>Aniversário</label>
+      <%= form.text_field :form_birth_date, :class => "eleven columns ui-yearpicker" %>
+    </div>
+  </div>
+</fieldset>
+
+<% if current_user.super_admin? %>
+  <fieldset id="admin-password" class='span-12'>
+    <p>Deixe em branco para não alterar a senha.</p>
+    <ul>
+      <li>
+        <%= form.label :password, 'Senha' %>
+        <%= form.password_field :password %>
+      </li>
+      <li>
+        <%= form.label :password_confirmation, 'Confirmar senha' %>
+        <%= form.password_field :password_confirmation %>
+      </li>
+    </ul>
+  </fieldset>
+<% end %>
+<fieldset>
+  <legend>Permições do usuário</legend>
+  <% @all_roles.each do |role| %>
+    <div class="property_form left span-9 last">
+      <% checked = @user.id && @user.roles.include?(role)%>
+      <%= check_box_tag "user[role_ids][]", role.id, checked %>
+      <%= role.name %>
+    </div>
+  <% end %>
+</fieldset>

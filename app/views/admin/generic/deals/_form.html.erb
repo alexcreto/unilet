@@ -1,0 +1,27 @@
+<%= f.error_messages %>
+<ul>
+  <li class="field">
+    <%= f.label 'Número de itens' %>
+    <%= f.number_field :buy_quantity %>
+  </li>
+  <li class="field">
+    <%= f.label 'Porcentagem' %>
+    <%= f.number_field :get_percentage %>
+  </li>
+  <li class="field">
+    <%= f.label 'Tipo de oferta' %>
+    <%= f.select :deal_type_id, deal_types, :include_blank => true %>
+  </li>
+  <li class="field">
+    <%= f.label "Tipo do produto" %>
+    <%= f.select :product_type_id, product_types, :include_blank => true %>
+  </li>
+  <li class="field">
+    <%= f.label 'Valor' %>
+    <%= f.number_field :get_amount %>
+  </li>
+  <li class="field date-select" >
+    <%= f.label 'Acaba em:' %>
+    <%= f.datetime_select :deleted_at %>
+  </li>
+</ul>

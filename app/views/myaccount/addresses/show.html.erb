@@ -1,0 +1,13 @@
+<div class='nine columns'>
+  <h3> Endereço </h3>
+
+  <p>
+    <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => @address } %>
+  </p>
+
+  <p>
+    <%= link_to 'Editar', edit_myaccount_address_path(@address), :class => 'button ar-small-black-button' %> |
+    <%= link_to "Deletar", myaccount_address_path(@address), :data => { :confirm => 'Você tem certeza?'}, :method => :delete, :class => 'button' %> |
+    <%= link_to "Mostrar todos", myaccount_addresses_path, :class => 'button ar-small-black-button' %>
+  </p>
+</div>

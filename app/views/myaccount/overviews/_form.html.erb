@@ -1,0 +1,37 @@
+<div id='myaccount-profile_name_form' class='clearfix'>
+  <fieldset id="myaccount-profile" class='five columns'>
+     <ul>
+       <li>
+         <%= f.label :first_name, 'Nome' %>
+         <%= f.text_field :first_name, :placeholder => "First Nome" %>
+        </li>
+        <li>
+          <%= f.label :last_name, 'Sobrenome' %>
+          <%= f.text_field :last_name %>
+        </li>
+        <li>
+          <%= f.label :email, 'Email' %>
+          <%= f.text_field :email %>
+        </li>
+        <li>
+          <%= f.label :form_birth_date, "Aniversário" %>
+          <%= f.text_field :form_birth_date, :class => 'ui-yearpicker', :placeholder => "Birthday mm/dd/yyyy" %>
+        </li>
+     </ul>
+  </fieldset>
+</div>
+<div id='myaccount-profile_form' class='clearfix' >
+  <fieldset id="myaccount-profile-password" class='five '>
+    <ul>
+      <li>
+        <%= f.label :password, 'Senha' %>
+        <%= f.password_field :password %>
+      </li>
+      <li>
+        <%= f.label :password_confirmation, 'Confirmar senha' %>
+        <%= f.password_field :password_confirmation %>
+      </li>
+    </ul>
+  </fieldset>
+  <div class="actions"><%= f.submit 'Atualizar' , :class => 'button' %></div>
+</div>

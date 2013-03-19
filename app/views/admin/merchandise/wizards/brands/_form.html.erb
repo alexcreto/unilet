@@ -1,0 +1,18 @@
+<% if @brand.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@brand.errors.count, "erro não permitiu", "erros não permitiram") %> que esta marca fosse salva:</h2>
+
+    <ul>
+    <% @brand.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="field">
+  <%= f.label :name, 'Nome' %><br />
+  <%= f.text_field :name %>
+</div>
+
+<%= submit_tag "Criar nova marca", :class => "button" %>

@@ -1,0 +1,34 @@
+<h1>Endereço de <%= @order.user.name %></h1>
+<p>Escolha o endereço para poder escolher o método de envio ou crie um novo.</p>
+<table>
+  <tr class='odd'>
+    <th class='column1_header'>Nome</th>
+    <th>Sobrenome</th>
+    <th>Endereço 1</th>
+    <th>Endereço 2</th>
+    <th>Cidade</th>
+    <th>Estado</th>
+    <th>CEP</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @addresses.each do |address| %>
+  <tr class='<%= cycle("odd", "")%>'>
+    <td><%= address.first_name %></td>
+    <td><%= address.last_name %></td>
+    <td><%= address.address1 %></td>
+    <td><%= address.address2 %></td>
+    <td><%= address.city %></td>
+    <td><%= address.state_id %></td>
+    <td><%= address.zip_code %></td>
+    <td>
+      <%= button_to 'Escolher', admin_history_order_address_path(@order, address), :method => :put %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Criar novo endereço', new_admin_history_order_address_path(@order) %>

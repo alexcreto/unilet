@@ -1,0 +1,52 @@
+<% content_for :sidemenu do %>
+  <div class='admin_filters'>
+    <%= form_tag admin_fulfillment_orders_path, :method => 'get', :id => "orders_search" do %>
+      <p>
+        <ul class=' search_boxes'>
+          <li><%= label_tag 'Número' %> <%= text_field_tag :number, params[:number] %></li>
+          <li><%= label_tag 'Email' %>  <%= text_field_tag :email, params[:email] %></li>
+          <li><%= label_tag 'Enviado' %>  <%= check_box_tag :shipped, 'sim', params[:shipped] == 'true' %></li>
+        </ul>
+        <div style='text-align:center'>
+        <%= submit_tag "Procurar", :name => nil, :class => 'button red-button' %>
+        </div>
+      </p>
+      <div id="order_hidden">
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+<% end %>
+
+<h3>Pedidos em envio</h3>
+
+<div id="admin_fulfillment_orders_page_wrapper">
+  <div id="admin_fulfillment_orders_grid_wrapper" class='column pretty_table'>
+      <table>
+        <thead>
+        <tr class='odd'>
+          <th class='column1_header'><%= sortable "Número" %></th>
+          <th><%= sortable "Email" %></th>
+          <th><%= "Nome" %></th>
+          <th>Status</th>
+          <th><%= 'Enviado' %></th>
+        </tr>
+        </thead>
+        <% @orders.each do |order| %>
+          <tr class='<%= cycle("odd", "")%>'>
+            <td><%= link_to order.number, edit_admin_fulfillment_order_path(order) %></td>
+            <td><%= order.email %></td>
+            <td><%= order.name %></td>
+            <td><%= order.display_completed_at %></td>
+            <td><%= order.shipped.to_s %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    <%= will_paginate @orders %>
+  </div>
+
+</div>
+

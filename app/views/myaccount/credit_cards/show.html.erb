@@ -1,0 +1,14 @@
+<div class='nine columns'>
+  <h3> Cartão de crédito </h3>
+
+<p>
+    <strong>Nome:</strong>
+    <%= @credit_card.name %>
+  </p>
+
+  <p>
+    <%= link_to 'Editar', edit_myaccount_credit_card_path(@credit_card), :class => 'button' %> |
+    <%= link_to "Deletar", myaccount_credit_card_path(@credit_card), :data => {:confirm => 'Você tem certeza?'}, :method => :delete, :class => 'button' %> |
+    <%= link_to "Mostrar todos", myaccount_credit_cards_path, :class => 'button' %>
+  </p>
+</div>

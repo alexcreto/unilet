@@ -1,0 +1,47 @@
+<% if @purchase_order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@purchase_order.errors.count, "erro não permitiu", "erros não permitiram") %> que esta compra fosse salva:</h2>
+
+    <ul>
+    <% @purchase_order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<fieldset>
+  <div class="six columns">
+    <label>Fabricante</label>
+    <%= form.select :supplier_id, @select_suppliers, { :include_blank => true }, :class => "chzn-select ten columns" %>
+
+    <label>Número do recibo</label>
+    <%= form.text_field :invoice_number %>
+
+    <label>Custo total</label>
+    <%= form.text_field :total_cost %>
+
+    <label>Número de rastreamento</label>
+    <%= form.text_field :tracking_number %>
+
+    <label>Comentários</label>
+    <%= form.text_field :notes %>
+
+    <label>Pedido em</label>
+    <div class='date-select'>
+      <%= form.datetime_select :ordered_at %>
+    </div>
+
+    <label>Data aprox. de chegada</label>
+    <div class='date-select'>
+      <%= form.date_select :estimated_arrival_on %>
+    </div>
+  </div>
+
+  <div class="six columns" style="background-color:#EEE;border: solid 1px #666;">
+    <%= form.fields_for :purchase_order_variants,  @purchase_order.purchase_order_variants do |po_variant_form| %>
+      <%= render :partial => 'purchase_order_variant', :locals => { :po_form => po_variant_form } %>
+    <% end %>
+    <p><%= link_to "Criar nova opção", '#add_variant', :class => 'add_variant', 'data-association' => "purchase_order_variants" %></p>
+    <%= new_child_fields_template form, :purchase_order_variants, :form_builder_local => :po_form %>
+    </div>
+</fieldset>

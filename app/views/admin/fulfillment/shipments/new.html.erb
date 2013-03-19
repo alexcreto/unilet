@@ -1,0 +1,64 @@
+
+<h2>Novo envio para o pedido: <%= @order.number %>  </h2>
+<div class='' >
+  Envio para <%= @order.user.name %>
+</div>
+<div class='clear'></div>
+<div id='order-shipment-items' class='span-7 last float-left'>
+<h4>Itens</h4>
+  <% @order.order_items.each_with_index do |item,i| %>
+    <div  id='order-shipment-item<%= i %>'
+          class='span-6 rounded-4 line_item_yellow'>
+
+        <%= item.variant.product_name %> <%= item.variant.sku %> <%= number_to_currency item.variant.price %> <br/>
+        <% if item.shipped? %>
+          Enviado: <%= item.shipment.display_shipped_at %> => Envio #: <%= item.shipment.number %>
+        <% else %>
+          Ainda não enviado.
+          <%= item.shipping_rate.shipping_method.name %>
+        <% end %>
+
+    </div>
+  <% end %>
+</div>
+<div class='span-7 last float-left' >
+<h4>Endereço de entrega</h4>
+  <div  id='order-ship-address'
+        class='span-6 rounded-4 line_item_yellow'>
+    <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+  </div>
+</div>
+<div class='span-7 last float-left'>
+<h4>Detalhes de envio</h4>
+  <% if @order.shipments.empty? %>
+    Ainda não há envios para este pedido.
+  <% end %>
+  <% @order.shipments.each do |shipment| %>
+      <div  id='order-shipment-items'
+            class='span-6 rounded-4 <%= cycle("line_item_yellow", "line_item_gray") %>'>
+          Método de envio: <%= shipment.shipping_method.name %> <br/>
+          Envio #: <%= shipment.number %> Rastreamento:<%= shipment.tracking %> Status:<%= shipment.state %>
+      </div>
+  <% end %>
+</div>
+<div class='clear'></div>
+Ask if you want to authorize full amount of partial with reason<br/>
+<div class='span-12 last'>
+  <% @order.invoices.each do |invoice| %>
+    <div style='display:inline-block;' class='line_item_gray'> <%= invoice.state %> Recibo:</div>
+    <%=  invoice.number %> => <%= number_to_currency invoice.amount %>
+    <% if invoice.authorized? %>
+      <a id='capture-invoice-button' style='display:inline-block;' class='line_item_blue'>
+        Recolher
+      </a>
+    <% end %>
+    <br/>
+  <% end %>
+</div>
+
+
+AUTHORIZE AND SHIP BUTTON.<br/>  AUTHORIZE PARTIAL AND CANCEL items.<br/>
+CANCEL BUTTON. (put this button in a place not easily clicked.)
+<%#= render 'form' %>
+
+<%= link_to 'Envios', admin_fulfillment_shipments_path(:order_id => @shipment.order_id) %>

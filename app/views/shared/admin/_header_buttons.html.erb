@@ -1,0 +1,65 @@
+<li class="active"><%#=  link_to site_name, :root %></li>
+
+<li><%= link_to 'Histórico', admin_history_orders_path %></li>
+<li><%= link_to 'Carrinhos ', admin_shopping_carts_path %></li>
+<li class="has-flyout">
+  <%= link_to 'Mercadorias', admin_merchandise_products_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Produtos', admin_merchandise_products_path %></li>
+    <li><%= link_to 'Propriedades', admin_merchandise_properties_path %></li>
+    <li><%= link_to 'Tipos de produtos', admin_merchandise_product_types_path %></li>
+    <li><%= link_to 'Supertipos de produtos', admin_merchandise_prototypes_path %></li>
+    <li><%= link_to 'Marcas', admin_merchandise_brands_path %></li>
+  </ul>
+</li>
+<li class="has-flyout">
+  <%= link_to "Estoque", admin_inventory_overviews_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Geral', admin_inventory_overviews_path %></li>
+    <li><%= link_to 'Fabricantes', admin_inventory_suppliers_path %></li>
+    <li><%= link_to 'Receber compras', admin_inventory_receivings_path %></li>
+    <li><%= link_to 'Fazer compras', admin_inventory_purchase_orders_path %></li>
+    <li><%= link_to 'Estoque', admin_inventory_adjustments_path %></li>
+  </ul>
+</li>
+<li><%= link_to "Usuários", admin_users_path %></li>
+<li class="has-flyout">
+  <%= link_to "Config", admin_config_accounts_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Contas',           admin_config_accounts_path %></li>
+    <li><%= link_to 'Países',          admin_config_countries_path %></li>
+    <li><%= link_to 'Áreas de entrega',     admin_config_shipping_zones_path %></li>
+    <li><%= link_to 'Métodos de envio',   admin_config_shipping_methods_path %></li>
+    <li><%= link_to 'Taxas de entrega',     admin_config_shipping_rates_path %></li>
+    <li><%= link_to 'Taxas',          admin_config_tax_rates_path %></li>
+    <li><%= link_to 'Categorias de envio',  admin_config_shipping_categories_path %></li>
+  </ul>
+</li>
+<li class="has-flyout">
+  <%= link_to "Cupons/Promoções", admin_generic_coupons_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Cupons', admin_generic_coupons_path %></li>
+    <li><%= link_to 'Oferta', admin_generic_deals_path %></li>
+    <li><%= link_to 'Promoção', admin_generic_sales_path %></li>
+  </ul>
+</li>
+<li class="has-flyout">
+  <%= link_to "Recibos/Envios", admin_fulfillment_orders_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Recibos', admin_document_invoices_path %></li>
+    <li><%= link_to 'Pedidos', admin_fulfillment_orders_path %></li>
+    <li><%= link_to 'Envios', admin_fulfillment_shipments_path %></li>
+  </ul>
+</li>
+<!--<li class="has-flyout">
+  <%= link_to "Help", admin_help_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Help', admin_help_path %></li>
+  </ul>
+</li>-->

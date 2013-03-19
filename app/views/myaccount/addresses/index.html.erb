@@ -1,0 +1,20 @@
+<div class='nine columns'>
+  <h3> Endereços </h3>
+  <% if @addresses.empty? %>
+    <p>
+      <%= I18n.t(:no_addresses_saved) %>
+    </p>
+  <% else %>
+    <ul>
+      <% for address in @addresses %>
+        <li><br/>
+          <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => address } %>
+          <%= link_to 'Editar', edit_myaccount_address_path(address) %> |
+          <%= link_to "Remover", myaccount_address_path(address), :confirm => 'Você tem certeza?', :method => :delete %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p><%= link_to "Criar novo endereço", new_myaccount_address_path, :class => 'b-link' %></p>
+</div>

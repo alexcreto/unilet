@@ -1,0 +1,35 @@
+<% content_for :head do -%>
+
+<% end %>
+
+<h1> Países </h1>
+
+<div id="admin_country_grid_wrapper" class='pretty_table'>
+  <table>
+    <tr class='odd'>
+        <th  class='column1_header'><%= sortable 'name', 'Nome' %></th>
+        <th>Abreviação</th>
+        <th>Área de envio</th>
+        <th>Ativo</th>
+        <th></th>
+    </tr>
+    <tbody>
+    <% for country in @countries %>
+      <tr  class='<%= cycle("odd", "")%>'>
+          <td><%= country.name %></td>
+          <td><%= country.abbreviation %></td>
+          <td><%= country.shipping_zone.try(:name) %></td>
+          <td><%= country.active %></td>
+        <% if country.active? %>
+          <td><%= link_to "Desativar", [:admin, :config, country], :data => { :confirm => 'Você tem certeza?' }, :method => :delete %></td>
+        <% else %>
+          <td><%= link_to "Ativar", [:admin, :config, country], :data => { :confirm => 'Você tem certeza?' }, :method => :put %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @countries %>
+
