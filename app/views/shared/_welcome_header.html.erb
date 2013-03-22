@@ -25,7 +25,7 @@
                 <% end %>
               </ul>
             </li>
-            <% Brand.all.each do |pt_tab| %>
+            <% ProductType.all.each do |pt_tab| %>
               <li> <%= link_to_unless_current pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id) %> </li>
             <% end %>
             <li class="divider"></li>
