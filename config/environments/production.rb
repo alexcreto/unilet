@@ -53,7 +53,7 @@ Hadean::Application.configure do
   config.action_controller.perform_caching = true
 
   if ENV['FOG_DIRECTORY'].present?
-    config.action_controller.asset_host = "https://#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
+    config.action_controller.asset_host = "https://s3.amazonaws.com/#{ENV['FOG_DIRECTORY']}"
   end
 
   # Specifies the header that your server uses for sending files
